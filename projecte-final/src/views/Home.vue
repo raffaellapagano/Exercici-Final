@@ -13,6 +13,7 @@
 import Header from '.././components/Header'
 import Footer from '.././components/Footer'
 import Consulted from '.././components/Consulted'
+import Vuex from 'vuex'
 import axios from 'axios'
 
 
@@ -25,8 +26,6 @@ export default {
   },
   data(){
         return{
-            albums: [],
-            users: [],
             numberShow: 0
         }
     },
@@ -35,18 +34,8 @@ export default {
             numberShow++
         }
     },
-    mounted(){
-        let vue = this;
-
-        axios.get('http://jsonplaceholder.typicode.com/photos')
-        .then( function ( response) { 
-            vue.albums = response.data;
-         });
-
-         axios.get('http://jsonplaceholder.typicode.com/users')
-         .then(function (response2) { 
-            vue.users = response2.data;
-          });
+    computed:{
+        ...Vuex.mapState(['albums', 'users'])
     }
 }
 </script>

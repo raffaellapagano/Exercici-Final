@@ -9,7 +9,7 @@
         
         <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
               <router-link class="nav-link" to="/">Home</router-link>           
-              <router-link class="nav-link" to="/users/general">Users</router-link>
+              <router-link class="nav-link" to="/users">Users</router-link>
               <router-link class="nav-link" to="/picture">Picture</router-link>
         </div>
 
