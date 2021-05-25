@@ -3,13 +3,9 @@
 
     <Header></Header>
 
-    <div class="body d-flex justify-content-center">
-    <Consulted :title="'Users'"></Consulted>
-    <Consulted :title="'Picture'"></Consulted>
-    </div>    
+    <router-view/>
    
     <Footer ></Footer>
-    </div>
   </div>
 </template>
 
@@ -17,6 +13,7 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Consulted from './components/Consulted'
+import axios from 'axios'
 
 
 export default {
@@ -25,7 +22,32 @@ export default {
     Header,
     Consulted,
     Footer
-  }
+  },
+  data(){
+        return{
+            albums: [],
+            users: [],
+            numberShow: 0
+        }
+    },
+    methods:{
+        ShowProduct(){
+            numberShow++
+        }
+    },
+    mounted(){
+        let vue = this;
+
+        axios.get('http://jsonplaceholder.typicode.com/photos')
+        .then( function ( response) { 
+            vue.albums = response.data;
+         });
+
+         axios.get('http://jsonplaceholder.typicode.com/users')
+         .then(function (response2) { 
+            vue.users = response2.data;
+          });
+    }
 }
 </script>
 
