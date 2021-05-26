@@ -8,9 +8,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     albums: albums,
-    users: users
+    users: users,
+    showModal: false,
+    showClient: false,
   },
   mutations: {
+    SetShowModal (state, value) {
+      state.showModal = value;
+    },
+    ShowClients(state, value){
+      state.showClient = value;
+    }
   },
   actions: {
   },

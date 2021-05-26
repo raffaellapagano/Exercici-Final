@@ -1,46 +1,61 @@
 <template>
-  <div class="users">
+    <div>
+       <button v-show="!showClient" class="btn btn-primary" @click="Anterior()">Back</button>
+            
+            <div class="row p-3 d-flex justify-content-center">
+                    <router-link :to="{ name: 'users', params: {id: user.id} }" 
+                    v-for="(user, index) of users" :key="index" class="col-lg-4">
+                      
+                        <div v-show="!showClient">
+                            <div class="card m-3 bg-light ">
+                              <div class="card-body mb-2 px-2">
+                                  <h4 class="card-title" >{{user.name}}</h4>
+                                     <hr>
+                                    <button type="button" class="btn btn-outline-primary btn-sm" 
+                                    @click="ShowClients(true); clienteId= user">
+                                        info
+                                    </button>
+                                </div>
+                            </div>       
+                        </div> 
+                     
+                    </router-link>
 
-    <div class="row d-flex justify-content-center">
-      <div class="mb-5">
-        <button @click="Anterior()" type="button" class="btn btn-success">Anterior</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="d-flex flex-row flex-wrap justify-content-center">
-          <Cliente :client="user" v-for="user in users" :key="user.id"></Cliente>
-      </div>
-    </div>
+            <div class="col-lg-10 text-center mt-3">
+            
+            <Cliente v-show="showClient" :client="clienteId"></Cliente>
 
-  </div>
+            </div>
+
+            </div>
+        </div>
 </template>
 
 <script>
 import Vuex from 'vuex'
-import Cliente from '../components/ClientComponent.vue'
+import Cliente from '../components/ClientComponent'
 
 export default {
-  data(){
-    return{}
+    components: {
+        Cliente
     },
-  components:{
-    Cliente
-  },
-  computed:{
-        ...Vuex.mapState(['users'])
+    computed:{
+        ...Vuex.mapState(['users', 'showClient'])
     },
-  methods:{
+    data(){
+        return{
+            clienteId: {
+                type: Object,
+                required: true
+            }
+        }
+    },
+    methods:{
         Anterior(){
             this.$router.go(-1);
-        }
+        },
+        ...Vuex.mapMutations(['ShowClients'])
     }
 }
 </script>
 
-<style scoped>
-
-.users{
-  padding: 0 30px 0 30px;
-}
-
-</style>
