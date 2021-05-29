@@ -12,7 +12,7 @@
                                   <h4 class="card-title" >{{user.name}}</h4>
                                      <hr>
                                     <button type="button" class="btn btn-outline-primary btn-sm" 
-                                    @click="ShowClients(true); clienteId= user;">
+                                    @click="ShowClients(true); clienteId= user; SetConsulted(user.name);">
                                         info
                                     </button>
                                 </div>
@@ -40,7 +40,7 @@ export default {
         Cliente
     },
     computed:{
-        ...Vuex.mapState(['users', 'showClient'])
+        ...Vuex.mapState(['users', 'showClient', 'consulted', 'consultedUsers'])
     },
     data(){
         return{

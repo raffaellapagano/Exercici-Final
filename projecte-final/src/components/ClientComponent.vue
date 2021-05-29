@@ -13,7 +13,7 @@
                 <p><span class="font-weight-bold">Webside:</span> {{ client.website }}</p>
                 <p><span class="font-weight-bold">Company:</span> {{ client.company.name }}</p>
                 <p><span class="font-weight-bold">View:</span> {{ views }}</p>
-                <button @click="ShowClients(false); SetConsulted(client.name);" 
+                <button @click="ShowClients(false); SetUser(client.name )" 
                 type="button" class="btn btn-primary">Back to List</button>
             </div>
         </div>
@@ -32,10 +32,10 @@ export default {
         Anterior(){
             this.$router.go(-1);
         },
-        ...Vuex.mapMutations(['ShowClients', 'SetConsulted'])
+        ...Vuex.mapMutations(['ShowClients', 'SetUser'])
     },
     computed:{
-        ...Vuex.mapState(['showClient', 'consulted', 'consultedUsers'])
+        ...Vuex.mapState(['showClient'])
     }
 }
 </script>

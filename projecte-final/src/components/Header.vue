@@ -30,7 +30,15 @@
 </template>
 
 <script>
-export default {}
+import Vuex from 'vuex'
+
+export default {
+  computed:{
+        ...Vuex.mapState(['showClient'])
+    }
+}
+
+
 </script>
 
 <style lang="scss">

@@ -33,6 +33,9 @@ export default new Vuex.Store({
     SetAlbums (state, albums) {
       state.albums = albums
     },
+    SetUser(state, value){
+      state.consulted.users = value;
+    },
     SetConsulted (state, userName) {
       if(state.consultedUsers.length == 0){
         state.consulted.users = userName;
@@ -41,6 +44,7 @@ export default new Vuex.Store({
       }else{
         for (let user = 0; user <= state.consultedUsers.length; user++) {
           if(userName ===  state.consultedUsers[user].users){
+            state.consulted.users = userName;
             state.consultedUsers[user].views = state.consultedUsers[user].views + 1;
           }else{
             state.consulted.users = userName;
@@ -75,8 +79,8 @@ export default new Vuex.Store({
           .then(albums => {
           commit('SetAlbums', albums)
       })
-  }
-},
+    }
+  },
   modules: {
   }
 })
