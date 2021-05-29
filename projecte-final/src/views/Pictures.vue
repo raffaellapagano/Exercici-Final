@@ -3,16 +3,16 @@
        <button v-show="!showClient" class="btn btn-primary" @click="Anterior()">Back</button>
             
             <div class="row p-3 d-flex justify-content-center">
-                    <router-link :to="{ name: 'users', params: {id: user.id} }" 
-                    v-for="(user, index) of users" :key="index" class="col-lg-4">
+                    <router-link style="text-decoration: none" :to="{ name: 'pictures', params: {id: album.id} }" 
+                    v-for="(album, index) of albums" :key="index" class="col-lg-4">
                       
                         <div v-show="!showClient">
                             <div class="card m-3 bg-light ">
                               <div class="card-body mb-2 px-2">
-                                  <h4 class="card-title" >{{user.name}}</h4>
+                                  <h4 class="card-title" >{{album.title}}</h4>
                                      <hr>
                                     <button type="button" class="btn btn-outline-primary btn-sm" 
-                                    @click="ShowClients(true); clienteId= user;">
+                                    @click="ShowClients(true); albumId= album">
                                         info
                                     </button>
                                 </div>
@@ -23,7 +23,7 @@
 
             <div class="col-lg-10 text-center mt-3">
             
-            <Cliente v-show="showClient" :client="clienteId"></Cliente>
+            <Album v-show="showClient" :album="albumId"></Album>
 
             </div>
 
@@ -33,18 +33,18 @@
 
 <script>
 import Vuex from 'vuex'
-import Cliente from '../components/ClientComponent'
+import Album from '../components/AlbumComponent'
 
 export default {
     components: {
-        Cliente
+        Album
     },
     computed:{
-        ...Vuex.mapState(['users', 'showClient'])
+        ...Vuex.mapState(['albums', 'showClient'])
     },
     data(){
         return{
-            clienteId: {
+            albumId: {
                 type: Object,
                 required: true
             }
@@ -54,8 +54,14 @@ export default {
         Anterior(){
             this.$router.go(-1);
         },
-        ...Vuex.mapMutations(['ShowClients', 'SetConsulted'])
+        ...Vuex.mapMutations(['ShowClients'])
     }
 }
 </script>
+
+<style>
+a{
+    text-decoration: none;
+}
+</style>
 

@@ -4,15 +4,12 @@
         <div class="card m-3 shadow" style="width: 20rem;">
         <div class="card-body">
             <h5 class="card-title">{{ title }} consulted</h5>
-            <div class="albums d-flex align-items-end text-left m-3" v-for="item in items" :key="item.id">
-                <div v-if="itemType">
-                    {{item.name}}
-                </div>
-                <div v-else>
-                    {{item.title}}
+            <div class="albums d-flex align-items-end text-left m-3" v-for="item in consultedUsers" :key="item.id">
+                <div>
+                    {{item.users}}
                 </div>
                 <div>
-                    {{ numberShow }}
+                    {{ item.views }}
                 </div>
             </div>
         </div>
@@ -23,20 +20,14 @@
 
 <script>
 import axios from 'axios'
+import Vuex from 'vuex'
 
 export default {
     props:{
-        title: String, 
-        items: Array,
-        numberShow: Number,
-        propriedad: String,
-        itemType: Boolean
+        title: String
     },
     data(){
         return{
-            albums: [],
-            users: [],            
-            itemMensaje: String
         }
     },
     methods:{
@@ -44,6 +35,9 @@ export default {
             let prop = this.propriedad;
             this.itemMensaje = `${item}.${prop}`
         }
+    },
+    computed:{
+        ...Vuex.mapState(['consultedUsers'])
     },
     mounted(){
         let vue = this;

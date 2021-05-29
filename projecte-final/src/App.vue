@@ -13,6 +13,7 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Consulted from './components/Consulted'
+import Vuex from 'vuex'
 
 
 export default {
@@ -31,6 +32,13 @@ export default {
         ShowProduct(){
             numberShow++
         }
+    },
+    mounted () {
+        this.$store.dispatch('loadUsers')
+        this.$store.dispatch('loadAlbums')
+    },
+    computed:{
+        ...Vuex.mapState(['users', 'albums'])
     }
 }
 </script>

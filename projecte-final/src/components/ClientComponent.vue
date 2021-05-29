@@ -12,7 +12,9 @@
                 <p><span class="font-weight-bold">Tel:</span> {{ client.phone }}</p>
                 <p><span class="font-weight-bold">Webside:</span> {{ client.website }}</p>
                 <p><span class="font-weight-bold">Company:</span> {{ client.company.name }}</p>
-                <button @click="ShowClients(false); Anterior()" type="button" class="btn btn-primary">Back to List</button>
+                <p><span class="font-weight-bold">View:</span> {{ views }}</p>
+                <button @click="ShowClients(false); SetConsulted(client.name);" 
+                type="button" class="btn btn-primary">Back to List</button>
             </div>
         </div>
     </div>
@@ -20,6 +22,7 @@
 
 <script>
 import Vuex from 'vuex'
+
 export default {
     name: 'Cliente',
     props: {
@@ -29,10 +32,10 @@ export default {
         Anterior(){
             this.$router.go(-1);
         },
-        ...Vuex.mapMutations(['ShowClients'])
+        ...Vuex.mapMutations(['ShowClients', 'SetConsulted'])
     },
     computed:{
-        ...Vuex.mapState(['showClient'])
+        ...Vuex.mapState(['showClient', 'consulted', 'consultedUsers'])
     }
 }
 </script>

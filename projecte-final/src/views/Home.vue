@@ -2,8 +2,8 @@
   <div>
 
     <div class="body d-flex justify-content-center">
-    <Consulted :title="'Users'" :itemType="true" :items="users" :numberShow="0"></Consulted>
-    <Consulted :title="'Picture'" :itemType="false" :items="albums" :numberShow="0"></Consulted>
+    <Consulted :title="'Users'"></Consulted>
+    <Consulted :title="'Picture'"></Consulted>
     </div>    
     
   </div>
@@ -14,7 +14,6 @@ import Header from '.././components/Header'
 import Footer from '.././components/Footer'
 import Consulted from '.././components/Consulted'
 import Vuex from 'vuex'
-import axios from 'axios'
 
 
 export default {
@@ -32,10 +31,11 @@ export default {
     methods:{
         ShowProduct(){
             numberShow++
-        }
+        },
+        ...Vuex.mapMutations(['SetConsulted'])
     },
     computed:{
-        ...Vuex.mapState(['albums', 'users'])
+        ...Vuex.mapState(['albums', 'users', 'consultedUsers'])
     }
 }
 </script>

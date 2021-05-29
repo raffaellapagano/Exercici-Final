@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
               <router-link class="nav-link" to="/">Home</router-link>           
               <router-link class="nav-link" to="/users/general">Users</router-link>
-              <router-link class="nav-link" to="/picture">Picture</router-link>
+              <router-link class="nav-link" to="/pictures/general">Picture</router-link>
         </div>
 
         <div class="input-group col-12 col-lg-4">
