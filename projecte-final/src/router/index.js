@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import ShowClient from '../components/ShowClient'
 
 Vue.use(VueRouter)
 
@@ -11,9 +12,14 @@ const routes = [
     component: Home
   },
   {
-    path: '/users/:id',
+    path: '/users',
     name: 'users',
     component: () => import(/* webpackChunkName: "clients/:id" */ '../views/Users.vue')
+  },
+  {
+    path: '/users/:Pid',
+    name: 'details',
+    component: ShowClient
   },
   {
     path: '/pictures/:id',

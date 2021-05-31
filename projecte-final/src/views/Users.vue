@@ -3,29 +3,11 @@
        <button v-show="!showClient" class="btn btn-primary" @click="Anterior()">Back</button>
             
             <div class="row p-3 d-flex justify-content-center">
-                    <router-link :to="{ name: 'users', params: {id: user.id} }" 
-                    v-for="(user, index) of users" :key="index" class="col-lg-4">
-                      
-                        <div v-show="!showClient">
-                            <div class="card m-3 bg-light ">
-                              <div class="card-body mb-2 px-2">
-                                  <h4 class="card-title" >{{user.name}}</h4>
-                                     <hr>
-                                    <button type="button" class="btn btn-outline-primary btn-sm" 
-                                    @click="ShowClients(true); clienteId= user; SetConsulted(user.name);">
-                                        info
-                                    </button>
-                                </div>
-                            </div>       
-                        </div> 
-                     
-                    </router-link>
-
-            <div class="col-lg-10 text-center mt-3">
-            
-            <Cliente v-show="showClient" :client="clienteId"></Cliente>
-
-            </div>
+        
+            <Cliente v-for="user in users"
+            :user="user"
+            :key="user.id"
+            class="col-sm-3 mt-3"></Cliente>
 
             </div>
         </div>
@@ -53,6 +35,9 @@ export default {
     methods:{
         Anterior(){
             this.$router.go(-1);
+        },
+        Prueba(value){
+            return value;
         },
         ...Vuex.mapMutations(['ShowClients', 'SetConsulted'])
     }
