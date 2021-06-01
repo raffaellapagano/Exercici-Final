@@ -4,12 +4,12 @@
         <div class="card m-3 shadow" style="width: 20rem;">
         <div class="card-body">
             <h5 class="card-title">{{ title }} consulted</h5>
-            <div class="albums d-flex align-items-end text-left m-3" v-for="item in consultedUsers" :key="item.id">
+            <div class="albums d-flex justify-content-between align-items-end m-3" v-for="item in consultedUsers" :key="item.id">
                 <div>
                     {{item.users}}
                 </div>
                 <div>
-                    {{ item.views }}
+                    {{ item.view }}
                 </div>
             </div>
         </div>

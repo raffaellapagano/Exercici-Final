@@ -1,6 +1,14 @@
 <template>
     <div>
+
         <div class="card bg-light p-3">
+            <p class="text-center">{{ album.title }} </p>
+            <button class="btn btn-primary" @click="Show(album.id); SetConsulted(album.title)">Info</button>
+            </div>
+        </div>
+
+
+        <!-- <div class="card bg-light p-3">
             <h5 class="mt-3">{{ album.title }}</h5>
             <hr>
             <div class="card-body">
@@ -12,14 +20,14 @@
                 <p><span class="font-weight-bold">Title:</span> {{ album.title }}</p>
                 <button @click="ShowClients(false); Anterior(); SetConsulted(album.title)" type="button" class="btn btn-primary">Back to List</button>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script>
 import Vuex from 'vuex'
 export default {
-    name: 'Cliente',
+    name: 'Album',
     props: {
     album: Object
   },
@@ -27,11 +35,20 @@ export default {
         Anterior(){
             this.$router.go(-1);
         },
-        ...Vuex.mapMutations(['ShowClients']),
-        ...Vuex.mapMutations(['SetConsulted'])
+        Show(proId){
+            this.$router.push(
+                {
+                    name: 'details',
+                    params:{
+                        Pid:proId
+                    }
+                }
+            )
+        },
+        ...Vuex.mapMutations(['ShowClients', 'SetConsulted'])
     },
     computed:{
-        ...Vuex.mapState(['showClient'])
+        ...Vuex.mapState(['showClient', 'albums'])
     }
 }
 </script>

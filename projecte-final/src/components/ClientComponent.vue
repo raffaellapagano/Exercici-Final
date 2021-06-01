@@ -2,7 +2,7 @@
     <div>
         <div class="card bg-light p-3">
             <p class="text-center">{{ user.name }} </p>
-            <button class="btn btn-primary" @click="Show(user.id)">Info</button>
+            <button class="btn btn-primary" @click="Show(user.id); SetConsulted(user.name)">Info</button>
             </div>
         </div>
     </div>
@@ -30,10 +30,10 @@ export default {
                 }
             )
         },
-        ...Vuex.mapMutations(['ShowClients', 'SetUser'])
+        ...Vuex.mapMutations(['ShowClients', 'SetConsulted'])
     },
     computed:{
-        ...Vuex.mapState(['showClient', 'users'])
+        ...Vuex.mapState(['showClient', 'users', 'consultedUsers'])
     }
 }
 </script>

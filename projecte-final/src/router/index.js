@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import ShowClient from '../components/ShowClient'
+import ShowAlbum from '../components/ShowAlbum'
 
 Vue.use(VueRouter)
 
@@ -22,9 +23,14 @@ const routes = [
     component: ShowClient
   },
   {
-    path: '/pictures/:id',
+    path: '/pictures',
     name: 'pictures',
     component: () => import(/* webpackChunkName: "clients/:id" */ '../views/Pictures.vue')
+  },
+  {
+    path: '/pictures/:Pid',
+    name: 'details',
+    component: ShowAlbum
   }
 ]
 

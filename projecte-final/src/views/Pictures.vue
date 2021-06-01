@@ -1,8 +1,18 @@
 <template>
     <div>
        <button v-show="!showClient" class="btn btn-primary" @click="Anterior()">Back</button>
-            
+
+
             <div class="row p-3 d-flex justify-content-center">
+        
+            <Album v-for="album in albums"
+            :album="album"
+            :key="album.id"
+            class="col-sm-3 mt-3"></Album>
+
+            </div>
+            
+            <!-- <div class="row p-3 d-flex justify-content-center">
                     <router-link style="text-decoration: none" :to="{ name: 'pictures', params: {id: album.id} }" 
                     v-for="(album, index) of albums" :key="index" class="col-lg-4">
                       
@@ -20,14 +30,7 @@
                         </div> 
                      
                     </router-link>
-
-            <div class="col-lg-10 text-center mt-3">
-            
-            <Album v-show="showClient" :album="albumId"></Album>
-
-            </div>
-
-            </div>
+            </div> -->
         </div>
 </template>
 

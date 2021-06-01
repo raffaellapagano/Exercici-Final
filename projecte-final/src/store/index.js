@@ -8,10 +8,6 @@ export default new Vuex.Store({
     albums: [],
     users: [],
     showClient: false,
-    consulted:{
-      users: "",
-      views: 1
-    },
     consultedUsers: [],
     consultedAlbums: []
   },
@@ -38,27 +34,29 @@ export default new Vuex.Store({
     },
     SetConsulted (state, userName) {
       let verify = false;
+      let newUser = {
+        users: "",
+        view: 0
+      };
 
       if(state.consultedUsers.length == 0){
-        state.consulted.users = userName;
-        state.consulted.view = 1;
-        state.consultedUsers.push(state.consulted);
+        newUser.users = userName;
+        newUser.view = 1;
+        state.consultedUsers.push(newUser);
         verify = true;
       }else{
-        for (let user = 0; user <= state.consultedUsers.length; user++) {
+        for (let user = 0; user < state.consultedUsers.length; user++) {
           if(userName ===  state.consultedUsers[user].users){
-            state.consultedUsers[user].views = state.consultedUsers[user].views + 1;
+            state.consultedUsers[user].view = state.consultedUsers[user].view + 1;
             verify = true;
+            }
           }
-        }
-      }
-
-      if(verify == false){
-          state.consulted.users = userName;
-          state.consulted.view = 1;
-          state.consultedUsers.push(state.consulted);
-      }
-      
+          if(verify === false){
+            newUser.users = userName;
+            newUser.view = 1;
+            state.consultedUsers.push(newUser);
+          }
+        }      
     }
   },
   actions: {
