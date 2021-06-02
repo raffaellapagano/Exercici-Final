@@ -29,7 +29,7 @@ const routes = [
   },
   {
     path: '/pictures/:Pid',
-    name: 'details',
+    name: 'detailsalbum',
     component: ShowAlbum
   }
 ]

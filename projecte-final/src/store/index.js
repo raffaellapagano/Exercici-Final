@@ -9,7 +9,8 @@ export default new Vuex.Store({
     users: [],
     showClient: false,
     consultedUsers: [],
-    consultedAlbums: []
+    consultedAlbums: [],
+    arrayConsulted: []
   },
   getters: {
     GetUsers: state => {
@@ -55,6 +56,32 @@ export default new Vuex.Store({
             newUser.users = userName;
             newUser.view = 1;
             state.consultedUsers.push(newUser);
+          }
+        }      
+    },
+    SetConsultedPictures (state, albumName) {
+      let verify = false;
+      let newAlbum = {
+        title: "",
+        view: 0
+      };
+
+      if(state.consultedAlbums.length == 0){
+        newAlbum.title = albumName;
+        newAlbum.view = 1;
+        state.consultedAlbums.push(newAlbum);
+        verify = true;
+      }else{
+        for (let i = 0; i < state.consultedAlbums.length; i++) {
+          if(albumName ===  state.consultedAlbums[i].title){
+            state.consultedAlbums[i].view = state.consultedAlbums[i].view + 1;
+            verify = true;
+            }
+          }
+          if(verify === false){
+            newAlbum.title = albumName;
+            newAlbum.view = 1;
+            state.consultedAlbums.push(newAlbum);
           }
         }      
     }

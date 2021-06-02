@@ -30,7 +30,7 @@ export default {
                 }
             )
         },
-        ...Vuex.mapMutations(['ShowClients', 'SetConsulted'])
+        ...Vuex.mapMutations(['ShowClients', 'SetConsulted', 'Prueba'])
     },
     computed:{
         ...Vuex.mapState(['showClient', 'users', 'consultedUsers'])

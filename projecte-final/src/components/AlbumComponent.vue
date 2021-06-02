@@ -3,7 +3,7 @@
 
         <div class="card bg-light p-3">
             <p class="text-center">{{ album.title }} </p>
-            <button class="btn btn-primary" @click="Show(album.id); SetConsulted(album.title)">Info</button>
+            <button class="btn btn-primary" @click="Show(album.id); SetConsultedPictures(album.title)">Info</button>
             </div>
         </div>
 
@@ -38,14 +38,14 @@ export default {
         Show(proId){
             this.$router.push(
                 {
-                    name: 'details',
+                    name: 'detailsalbum',
                     params:{
                         Pid:proId
                     }
                 }
             )
         },
-        ...Vuex.mapMutations(['ShowClients', 'SetConsulted'])
+        ...Vuex.mapMutations(['ShowClients', 'SetConsultedPictures'])
     },
     computed:{
         ...Vuex.mapState(['showClient', 'albums'])
