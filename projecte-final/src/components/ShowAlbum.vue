@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-center ">
         
          <div class="card bg-light p-3">
-            <h5 class="mt-3 font-weight-bold">{{ albums[id].title }}</h5>
+            <h5 class="mt-3 font-weight-bold">{{ albums[id].title | uppercaseName }}</h5>
             <hr>
             <div class="card-body row">
 
@@ -40,6 +40,11 @@ export default {
     },
     computed:{
         ...Vuex.mapState(['showClient', 'albums'])
+    },
+    filters:{
+      uppercaseName: function(value){
+          return value.toString().toUpperCase(); 
+      }
     }
 }
 </script>

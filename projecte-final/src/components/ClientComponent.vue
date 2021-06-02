@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="card bg-light p-3">
-            <p class="text-center">{{ user.name }} </p>
+            <p class="text-center">{{ user.name | uppercaseName }} </p>
             <button class="btn btn-primary" @click="Show(user.id); SetConsulted(user.name)">Info</button>
             </div>
         </div>
@@ -34,7 +34,12 @@ export default {
     },
     computed:{
         ...Vuex.mapState(['showClient', 'users', 'consultedUsers'])
-    }
+    },
+    filters:{
+      uppercaseName: function(value){
+          return value.toString().toUpperCase(); 
+      }
+  }
 }
 </script>
 

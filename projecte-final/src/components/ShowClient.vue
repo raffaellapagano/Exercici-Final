@@ -2,7 +2,7 @@
     <div>
         
          <div class="card bg-light p-3">
-            <h5 class="mt-3">{{ users[id].name }}</h5>
+            <h5 class="mt-3">{{ users[id].name | uppercaseName }}</h5>
             <hr>
             <div class="card-body">
                 <p><span class="font-weight-bold">Id:</span> {{  users[id].id }}</p>
@@ -36,6 +36,11 @@ export default {
     },
     computed:{
         ...Vuex.mapState(['showClient', 'users'])
+    },
+    filters:{
+      uppercaseName: function(value){
+          return value.toString().toUpperCase(); 
+      }
     }
 }
 </script>
