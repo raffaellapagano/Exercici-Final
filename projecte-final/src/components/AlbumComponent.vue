@@ -1,12 +1,7 @@
 <template>
-    <div>
-
-        <div class="card bg-light p-3">
-            <p class="text-center">{{ album.title }} </p>
-            <button class="btn btn-primary" @click="Show(album.id); SetConsultedPictures(album.title)">Info</button>
-            </div>
-        </div>
-
+    <div>            
+                <img class="imgAlbum" :src="album.url" alt="" @click="Show(album.id); SetConsultedPictures(album.title)">
+            
 
         <!-- <div class="card bg-light p-3">
             <h5 class="mt-3">{{ album.title }}</h5>
@@ -53,14 +48,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 p{
     text-align: center;
 }
 
 .imgAlbum{
-    height: 400px;
-    width: 400px;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
 }
 </style>
 

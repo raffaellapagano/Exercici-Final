@@ -1,19 +1,24 @@
 <template>
-    <div>
+    <div class="d-flex justify-content-center ">
         
          <div class="card bg-light p-3">
-            <div class="card bg-light p-3">
-            <h5 class="mt-3">{{ albums[id].title }}</h5>
+            <h5 class="mt-3 font-weight-bold">{{ albums[id].title }}</h5>
             <hr>
-            <div class="card-body">
-                <div class="mb-2">
-                    <img class="imgAlbum" :src="albums[id].url" alt="">
+            <div class="card-body row">
+
+                <div class="mb-2 col-12 col-md-6">
+                    <img class="col-12" :src="albums[id].url" alt="">
                 </div>
-                <p><span class="font-weight-bold">AlbumId:</span> {{ albums[id].albumId }}</p>
-                <p><span class="font-weight-bold">Id:</span> {{ albums[id].id }}</p>
-                <p><span class="font-weight-bold">Title:</span> {{ albums[id].title }}</p>
-                <button @click="Anterior()" type="button" class="btn btn-primary">Back to List</button>
-        </div>
+                
+                <div class="col-12 col-md-6">
+                    <div class="col-12" >
+                        <p><span class="font-weight-bold">AlbumId:</span> {{ albums[id].albumId }}</p>
+                        <p><span class="font-weight-bold">Id:</span> {{ albums[id].id }}</p>
+                        <p><span class="font-weight-bold">Title:</span> {{ albums[id].title }}</p>
+                        <button @click="Anterior()" type="button" class="btn btn-primary">Back to List</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     </div>
@@ -38,3 +43,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+p{
+    text-align: left;
+}
+
+</style>

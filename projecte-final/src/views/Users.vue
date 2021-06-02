@@ -1,7 +1,9 @@
 <template>
     <div>
-       <button v-show="!showClient" class="btn btn-primary" @click="Anterior()">Back</button>
-            
+       <button class="btn btn-primary" @click="Anterior()">Back</button>
+
+       <h1 class="font-weight-bold mt-3">Users</h1>
+           
             <div class="row p-3 d-flex justify-content-center">
         
             <Cliente v-for="user in users"
@@ -22,7 +24,7 @@ export default {
         Cliente
     },
     computed:{
-        ...Vuex.mapState(['users', 'showClient', 'consulted', 'consultedUsers'])
+        ...Vuex.mapState(['users', 'consulted', 'consultedUsers'])
     },
     data(){
         return{

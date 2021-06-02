@@ -7,7 +7,6 @@ export default new Vuex.Store({
   state: {
     albums: [],
     users: [],
-    showClient: false,
     consultedUsers: [],
     consultedAlbums: [],
     arrayConsulted: []
@@ -21,9 +20,6 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    ShowClients(state, value){
-      state.showClient = value;
-    },
     SetUsers (state, users) {
       state.users = users
     },
@@ -36,24 +32,24 @@ export default new Vuex.Store({
     SetConsulted (state, userName) {
       let verify = false;
       let newUser = {
-        users: "",
+        name: "",
         view: 0
       };
 
       if(state.consultedUsers.length == 0){
-        newUser.users = userName;
+        newUser.name = userName;
         newUser.view = 1;
         state.consultedUsers.push(newUser);
         verify = true;
       }else{
         for (let user = 0; user < state.consultedUsers.length; user++) {
-          if(userName ===  state.consultedUsers[user].users){
+          if(userName ===  state.consultedUsers[user].name){
             state.consultedUsers[user].view = state.consultedUsers[user].view + 1;
             verify = true;
             }
           }
           if(verify === false){
-            newUser.users = userName;
+            newUser.name = userName;
             newUser.view = 1;
             state.consultedUsers.push(newUser);
           }
@@ -62,24 +58,24 @@ export default new Vuex.Store({
     SetConsultedPictures (state, albumName) {
       let verify = false;
       let newAlbum = {
-        title: "",
+        name: "",
         view: 0
       };
 
       if(state.consultedAlbums.length == 0){
-        newAlbum.title = albumName;
+        newAlbum.name = albumName;
         newAlbum.view = 1;
         state.consultedAlbums.push(newAlbum);
         verify = true;
       }else{
         for (let i = 0; i < state.consultedAlbums.length; i++) {
-          if(albumName ===  state.consultedAlbums[i].title){
+          if(albumName ===  state.consultedAlbums[i].name){
             state.consultedAlbums[i].view = state.consultedAlbums[i].view + 1;
             verify = true;
             }
           }
           if(verify === false){
-            newAlbum.title = albumName;
+            newAlbum.name = albumName;
             newAlbum.view = 1;
             state.consultedAlbums.push(newAlbum);
           }

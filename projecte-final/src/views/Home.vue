@@ -1,9 +1,9 @@
 <template>
   <div>
 
-    <div class="body d-flex justify-content-center">
-    <Consulted :title="'Users'"></Consulted>
-    <Consulted :title="'Picture'"></Consulted>
+    <div class="body d-flex justify-content-center row">
+    <Consulted :title="'Users'" :arrayConsulted="consultedUsers" class="col-lg-4"></Consulted>
+    <Consulted :title="'Picture'" :arrayConsulted="consultedAlbums" class="col-lg-4"></Consulted>
     </div>    
     
   </div>
@@ -35,7 +35,7 @@ export default {
         ...Vuex.mapMutations(['SetConsulted'])
     },
     computed:{
-        ...Vuex.mapState(['albums', 'users', 'consultedUsers', 'showClient'])
+        ...Vuex.mapState(['albums', 'users', 'consultedUsers', 'consultedAlbums', 'showClient'])
     }
 }
 </script>
@@ -49,7 +49,9 @@ export default {
   color: #2c3e50;
 }
 
-
+.btn{
+    background: rgb(12, 214, 147); 
+}
 
 .has-search .form-control {
     padding-left: 1rem;
