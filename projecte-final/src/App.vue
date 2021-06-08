@@ -3,7 +3,9 @@
 
     <Header></Header>
 
-    <router-view/>
+    <Fade>
+      <router-view/>
+    </Fade>
    
     <Footer ></Footer>
   </div>
@@ -14,6 +16,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Consulted from './components/Consulted'
 import Vuex from 'vuex'
+import Fade from './components/Animations/FadeIn.vue'
 
 
 export default {
@@ -21,7 +24,8 @@ export default {
   components: {
     Header,
     Consulted,
-    Footer
+    Footer,
+    Fade
   },
   data(){
         return{

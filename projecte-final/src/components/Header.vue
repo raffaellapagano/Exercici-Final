@@ -6,9 +6,9 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        
+              
         <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
-              <router-link class="nav-link" to="/">Home</router-link>           
+              <router-link class="nav-link" to="/">Home</router-link>     
               <router-link class="nav-link" to="/users">Users</router-link>
               <router-link class="nav-link" to="/pictures">Picture</router-link>
         </div>
@@ -25,6 +25,8 @@
         </div>
         
       </nav>
+
+      
 
     </div>
 </template>

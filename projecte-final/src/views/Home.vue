@@ -1,10 +1,12 @@
 <template>
   <div>
 
-    <div class="body d-flex justify-content-center row">
-    <Consulted :title="'Users'" :arrayConsulted="consultedUsers" class="col-lg-4"></Consulted>
-    <Consulted :title="'Picture'" :arrayConsulted="consultedAlbums" class="col-lg-4"></Consulted>
-    </div>    
+    <Fade>
+      <div class="body d-flex justify-content-center row">
+      <Consulted :title="'Users'" :arrayConsulted="consultedUsers" class="col-lg-4"></Consulted>
+      <Consulted :title="'Picture'" :arrayConsulted="consultedAlbums" class="col-lg-4"></Consulted>
+      </div>
+    </Fade> 
     
   </div>
 </template>
@@ -14,6 +16,7 @@ import Header from '.././components/Header'
 import Footer from '.././components/Footer'
 import Consulted from '.././components/Consulted'
 import Vuex from 'vuex'
+import Fade from '../components/Animations/Bounce'
 
 
 export default {
@@ -21,7 +24,8 @@ export default {
   components: {
     Header,
     Consulted,
-    Footer
+    Footer,
+    Fade
   },
   data(){
         return{
