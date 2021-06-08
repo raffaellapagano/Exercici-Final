@@ -1,7 +1,7 @@
 <template>
 
-    <div>
-        <div class="card m-3 shadow" style="width: 20rem;">
+    <div class="d-flex justify-content-center">
+        <div class="card m-3 shadow justify-content-center" style="width: 20rem;">
         <div class="card-body">
             <h5 class="card-title">{{ title }} consulted</h5>
             <div class="albums d-flex justify-content-between align-items-end m-3" v-for="item in arrayConsulted" :key="item.id">

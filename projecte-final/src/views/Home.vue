@@ -1,12 +1,10 @@
 <template>
-  <div>
+  <div class="home">
 
-    <Fade>
-      <div class="body d-flex justify-content-center row">
+      <div class="d-flex row justify-content-center">
       <Consulted :title="'Users'" :arrayConsulted="consultedUsers" class="col-lg-4"></Consulted>
-      <Consulted :title="'Picture'" :arrayConsulted="consultedAlbums" class="col-lg-4"></Consulted>
+      <Consulted :title="'Pictures'" :arrayConsulted="consultedAlbums" class="col-lg-4"></Consulted>
       </div>
-    </Fade> 
     
   </div>
 </template>
@@ -16,7 +14,6 @@ import Header from '.././components/Header'
 import Footer from '.././components/Footer'
 import Consulted from '.././components/Consulted'
 import Vuex from 'vuex'
-import Fade from '../components/Animations/Bounce'
 
 
 export default {
@@ -24,8 +21,7 @@ export default {
   components: {
     Header,
     Consulted,
-    Footer,
-    Fade
+    Footer
   },
   data(){
         return{
@@ -39,7 +35,7 @@ export default {
         ...Vuex.mapMutations(['SetConsulted'])
     },
     computed:{
-        ...Vuex.mapState(['albums', 'users', 'consultedUsers', 'consultedAlbums', 'showClient'])
+        ...Vuex.mapState(['albums', 'users', 'consultedUsers', 'consultedAlbums'])
     }
 }
 </script>
@@ -55,6 +51,10 @@ export default {
 
 .btn{
     background: rgb(12, 214, 147); 
+}
+
+.home{
+  height: 100%;
 }
 
 .has-search .form-control {
