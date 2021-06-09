@@ -6,8 +6,8 @@
       <Consulted :title="'Pictures'" :arrayConsulted="consultedAlbums" class="col-lg-4"></Consulted>
       </div>
 
-      <div v-else>
-        <ShowClient/>
+      <div class="row p-3 d-flex justify-content-center" v-else>
+        <FilterUser class="col-lg-4"></FilterUser>
       </div>
     
   </div>
@@ -18,7 +18,7 @@ import Header from '.././components/Header'
 import Footer from '.././components/Footer'
 import Consulted from '.././components/Consulted'
 import Vuex from 'vuex'
-import ShowClient from '../components/ShowClient.vue'
+import FilterUser from '../components/FilterUsers.vue'
 
 
 export default {
@@ -27,7 +27,7 @@ export default {
     Header,
     Consulted,
     Footer,
-    ShowClient
+    FilterUser
   },
   data(){
         return{

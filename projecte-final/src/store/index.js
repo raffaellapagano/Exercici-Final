@@ -7,7 +7,6 @@ export default new Vuex.Store({
   state: {
     albums: [],
     users: [],
-    usersFilter: [],
     filter: '',
     consultedUsers: [],
     consultedAlbums: [],
@@ -20,12 +19,10 @@ export default new Vuex.Store({
     GetAlbums: state => {
       return state.albums;
     },
-    FilterUser (state) {
-      let movies = state.movies.filter(movie =>movie.available === state.filter.available);
-      if(state.filter.query.length > 2) {
-        return movies.filter(movie => movie.title.toLowerCase().includes(state.filter.query))
+    FilteredUser (state) {
+      if(state.filter.length > 1) {
+        return state.users.filter(user => user.name.toUpperCase().includes(state.filter.toUpperCase()))
       }
-      return movies;
     }
   },
   mutations: {
