@@ -14,7 +14,7 @@
         </div>
 
         <div class="input-group col-12 col-lg-4">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" v-model="search" class="form-control" placeholder="Search">
           <div class="input-group-append">
             <button class="btn btn-secondary" type="button">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -36,7 +36,16 @@ import Vuex from 'vuex'
 
 export default {
   computed:{
-        ...Vuex.mapState(['showClient'])
+        ...Vuex.mapState(['showClient', 'filter']),
+        ...Vuex.mapMutations(['SetFilter']),
+        search: {
+        get() {
+         return this.$store.state.filter;
+        },
+        set(value) {
+            this.$store.commit('SetFilter', value)
+        }
+    }
     }
 }
 

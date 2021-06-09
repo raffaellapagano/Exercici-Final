@@ -1,9 +1,13 @@
 <template>
   <div class="home">
 
-      <div class="d-flex row justify-content-center">
+      <div class="d-flex row justify-content-center" v-if="filter.length == 0">
       <Consulted :title="'Users'" :arrayConsulted="consultedUsers" class="col-lg-4"></Consulted>
       <Consulted :title="'Pictures'" :arrayConsulted="consultedAlbums" class="col-lg-4"></Consulted>
+      </div>
+
+      <div v-else>
+        <ShowClient/>
       </div>
     
   </div>
@@ -14,6 +18,7 @@ import Header from '.././components/Header'
 import Footer from '.././components/Footer'
 import Consulted from '.././components/Consulted'
 import Vuex from 'vuex'
+import ShowClient from '../components/ShowClient.vue'
 
 
 export default {
@@ -21,7 +26,8 @@ export default {
   components: {
     Header,
     Consulted,
-    Footer
+    Footer,
+    ShowClient
   },
   data(){
         return{
@@ -35,7 +41,7 @@ export default {
         ...Vuex.mapMutations(['SetConsulted'])
     },
     computed:{
-        ...Vuex.mapState(['albums', 'users', 'consultedUsers', 'consultedAlbums'])
+        ...Vuex.mapState(['albums', 'users', 'consultedUsers', 'consultedAlbums', 'filter'])
     }
 }
 </script>

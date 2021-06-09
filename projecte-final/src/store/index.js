@@ -7,6 +7,8 @@ export default new Vuex.Store({
   state: {
     albums: [],
     users: [],
+    usersFilter: [],
+    filter: '',
     consultedUsers: [],
     consultedAlbums: [],
     arrayConsulted: []
@@ -17,6 +19,13 @@ export default new Vuex.Store({
     },
     GetAlbums: state => {
       return state.albums;
+    },
+    FilterUser (state) {
+      let movies = state.movies.filter(movie =>movie.available === state.filter.available);
+      if(state.filter.query.length > 2) {
+        return movies.filter(movie => movie.title.toLowerCase().includes(state.filter.query))
+      }
+      return movies;
     }
   },
   mutations: {
@@ -80,7 +89,10 @@ export default new Vuex.Store({
             state.consultedAlbums.push(newAlbum);
           }
         }      
-    }
+    },
+    SetFilter (state, filter) {
+      state.filter = filter;
+    },
   },
   actions: {
     loadUsers ({ commit }) {
