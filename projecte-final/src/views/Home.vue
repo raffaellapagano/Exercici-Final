@@ -7,7 +7,7 @@
       </div>
 
       <div class="row p-3 d-flex justify-content-center" v-else>
-        <FilterUser class="col-lg-4"></FilterUser>
+        <FilterUser ></FilterUser>
       </div>
     
   </div>

@@ -13,15 +13,37 @@
               <router-link class="nav-link" to="/pictures">Picture</router-link>
         </div>
 
-        <div class="input-group col-12 col-lg-4">
-          <input type="text" v-model="search" class="form-control" placeholder="Search">
-          <div class="input-group-append">
-            <button class="btn btn-secondary" type="button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-              </svg>
-            </button>
-          </div>
+        <div class=" col-12 col-lg-4 d-flex align-items-center row">
+          <form class="form-inline my-2 d-flex justify-content-center flex-nowrap">
+            <input type="text" v-model="state" autocomplete="on" @input="filterStates" class="form-control dropdown" placeholder="Search">
+            <div class="input-group-append">
+              <button class="btn btn-secondary" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+
+            <div v-if="filteredStates" class="bg-white" >
+              <ul>
+                <li v-for="filteredState in filteredStates" :key="filteredState.id" @click="setState(filteredState)" class="dropdown-item">{{ filteredState }}</li>
+              </ul>
+            </div>
+
+          
+
+          
+
+          <!-- <form class="form-inline my-2 d-flex justify-content-center">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+          </button>
+        </form>      -->
+        
         </div>
         
       </nav>
@@ -35,8 +57,26 @@
 import Vuex from 'vuex'
 
 export default {
+  data: function () {
+    return{
+      state: '', 
+      states: ['Florida', 'Alabama', 'Texas'],
+      filteredStates: [],
+    }
+  },
+  methods:{
+    filterStates(){
+      this.filteredStates = this.states.filter(state => {
+        return state.toLowerCase().startsWith(this.state.toLowerCase());
+      })
+    },
+    setState(state){
+      this.state = state;
+      this.filteredStates = [];
+    }
+  },
   computed:{
-        ...Vuex.mapState(['showClient', 'filter']),
+        ...Vuex.mapState(['showClient', 'filter', 'users']),
         ...Vuex.mapMutations(['SetFilter']),
         search: {
         get() {

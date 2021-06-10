@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="row d-flex justify-content-center" v-if="users.length > 0">
-            <User :user="user" v-for="user in users" :key="user.id" class="col-sm-3 mt-3"></User>
+        <div class="row d-flex justify-content-center" v-if="userFil.length != 0">
+            <User :user="user" v-for="user in userFil" :key="user.id" class="m-3"></User>
         </div>
         <div v-else class="alert alert-danger">No hay usuarios</div>
     </div>
@@ -13,13 +13,13 @@ import {mapGetters} from 'vuex'
 
 
 export default ({
-    components: {
-        User
-    },
     computed:{
         ...mapGetters({
-            users: 'FilteredUser'
+            userFil: 'FilteredUser'
         })
+    },
+    components: {
+        User
     }
 })
 </script>

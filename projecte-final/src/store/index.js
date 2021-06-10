@@ -12,19 +12,6 @@ export default new Vuex.Store({
     consultedAlbums: [],
     arrayConsulted: []
   },
-  getters: {
-    GetUsers: state => {
-        return state.users;
-    },
-    GetAlbums: state => {
-      return state.albums;
-    },
-    FilteredUser (state) {
-      if(state.filter.length > 1) {
-        return state.users.filter(user => user.name.toUpperCase().includes(state.filter.toUpperCase()))
-      }
-    }
-  },
   mutations: {
     SetUsers (state, users) {
       state.users = users
@@ -115,6 +102,19 @@ export default new Vuex.Store({
           .then(albums => {
           commit('SetAlbums', albums)
       })
+    }
+  },
+  getters: {
+    GetUsers: state => {
+        return state.users;
+    },
+    GetAlbums: state => {
+      return state.albums;
+    },
+    FilteredUser (state) {
+      if(state.filter.length > 1) {
+        return state.users.filter(user => user.name.toUpperCase().includes(state.filter.toUpperCase()))
+      }
     }
   },
   modules: {
