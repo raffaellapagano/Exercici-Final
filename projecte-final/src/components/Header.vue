@@ -13,48 +13,22 @@
               <router-link class="nav-link" to="/pictures">Picture</router-link>
         </div>
 
-        <div id="search">
-          <ejs-autocomplete :dataSource='users' :fields='dataFields'
-          placeholder="Select a game" popupWidth="250px" popupHeigth="400px"
-          style="background:white">
-          </ejs-autocomplete>
-        </div>
-
-        <!-- <div class=" col-12 col-lg-4 d-flex align-items-center row ">
-          <form class="form-inline my-2 d-flex justify-content-center flex-nowrap">
-            <input type="text" v-model="search" autocomplete="on" @input="FilterUsers" @focus="SetModal('true')"
-            class="form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" placeholder="Search">
+        <div class=" col-12 col-lg-4 d-flex align-items-center row justify-content-center">
+          <form class="form-inline my-2 d-flex justify-content-center flex-nowrap align-items-center">
+          <div id="search" class="bg-white rounded-lg">
+            <ejs-autocomplete :dataSource='users' :fields='dataFields' :highlight="true"
+            placeholder="Select user" id="inputSearch" v-model="search">
+            </ejs-autocomplete>
+          </div>
             <div class="input-group-append">
-              <button class="btn btn-secondary" type="button">
+              <button class="btn btn-secondary" type="button" id="buttonSearch" @click="Show(SearchIdUser(search)); SetConsulted(StringInput())">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                   <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                 </svg>
               </button>
             </div>
-
-            <div v-if="filteredUsers && modal" class="bg-white" >
-              <ul>
-                <li v-for="filteredUser in filteredUsers" :key="filteredUser.id" @click="setState(filterUsers); SetModal('false')" class="dropdown-item">{{ filteredUser }}</li>
-              </ul>
-            </div>
-          
-          </form> -->
-
-          
-
-          
-
-          <!-- <form class="form-inline my-2 d-flex justify-content-center">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-          </svg>
-          </button>
-        </form>      -->
-        
-       
-        
+          </form>
+        </div>  
       </nav>
 
       
@@ -71,25 +45,46 @@ Vue.use(AutoCompletePlugin);
 export default {
   data: function(){
     return {
+      search: "",
       dataFields:{value:'name'}
     }
   },
   methods:{
-    
+    SearchIdUser(nameUser){
+      for (let i = 0; i < this.users.length; i++) {
+        if(nameUser == this.users[i].name){
+          return this.users[i].id;
+        }
+      }
+    },
+    Show(proId){
+            this.$router.push(
+                {
+                    name: 'details',
+                    params:{
+                        Pid:proId
+                    }
+                }
+            )
+        },
+    StringInput(){
+      this.search = search.value;
+      return this.search
+    }  
   },
   computed:{
         ...Vuex.mapState(['modal', 'users', 'filteredUsers']),
-        ...Vuex.mapMutations(['setState', 'FilterUsers','SetModal']),
-        search: {
-        get() {
-         return this.$store.state.user;
-        },
-        set(value) {
-            this.$store.commit('SetFilter', value)
-        }
+        ...Vuex.mapMutations(['setState', 'FilterUsers','SetModal', 'SetConsulted'])
+        // search: {
+        // get() {
+        //  return this.$store.state.user;
+        // },
+        // set(value) {
+        //     this.$store.commit('SetFilter', value)
+        // }
     }
     }
-}
+
 
 
 
@@ -99,7 +94,7 @@ export default {
 
 @import url(https://cdn.syncfusion.com/ej2/material.css);
 #search{
-  margin: 10% 25%;
+  
 }
 
 #nav{
@@ -113,6 +108,18 @@ export default {
       color: #42b983;
     }
   }
+}
+
+#inputSearch{
+  width: 200px;
+  height: 20px;
+  margin: 2px;
+  background: white;
+  border-radius: 5px;
+}
+
+#buttonSearch{
+  height: 40px;
 }
 
 </style>

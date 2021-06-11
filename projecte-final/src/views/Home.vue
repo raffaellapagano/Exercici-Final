@@ -1,13 +1,9 @@
 <template>
   <div class="home">
 
-      <div class="d-flex row justify-content-center" v-if="filter.length == 0">
+      <div class="d-flex row justify-content-center">
       <Consulted :title="'Users'" :arrayConsulted="consultedUsers" class="col-lg-4"></Consulted>
       <Consulted :title="'Pictures'" :arrayConsulted="consultedAlbums" class="col-lg-4"></Consulted>
-      </div>
-
-      <div class="row p-3 d-flex justify-content-center" v-else>
-        <FilterUser ></FilterUser>
       </div>
     
   </div>
@@ -18,7 +14,6 @@ import Header from '.././components/Header'
 import Footer from '.././components/Footer'
 import Consulted from '.././components/Consulted'
 import Vuex from 'vuex'
-import FilterUser from '../components/FilterUsers.vue'
 
 
 export default {
@@ -26,8 +21,7 @@ export default {
   components: {
     Header,
     Consulted,
-    Footer,
-    FilterUser
+    Footer
   },
   data(){
         return{

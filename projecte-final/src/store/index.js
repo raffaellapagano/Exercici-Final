@@ -9,7 +9,6 @@ export default new Vuex.Store({
     users: [],
     filter: '',
     user: '',
-    search: '',
     modal: false,
     filteredUsers: [],
     consultedUsers: [],
