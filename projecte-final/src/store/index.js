@@ -8,6 +8,10 @@ export default new Vuex.Store({
     albums: [],
     users: [],
     filter: '',
+    user: '',
+    search: '',
+    modal: false,
+    filteredUsers: [],
     consultedUsers: [],
     consultedAlbums: [],
     arrayConsulted: []
@@ -74,9 +78,24 @@ export default new Vuex.Store({
           }
         }      
     },
-    SetFilter (state, filter) {
-      state.filter = filter;
+    SetFilter (state, user) {
+      state.user = user;
     },
+    FilterUsers(state){
+      state.filteredUsers = state.users
+
+
+      // state.filteredUsers = state.users.filter(user => {
+      //   return user.toLowerCase().startsWith(state.search.toLowerCase());
+      // })
+    },
+    setState(state, user){
+      state.user = user;
+      state.modal = false;
+    },
+    SetModal(state, value){
+      state.modal = value;
+    }
   },
   actions: {
     loadUsers ({ commit }) {
@@ -110,11 +129,6 @@ export default new Vuex.Store({
     },
     GetAlbums: state => {
       return state.albums;
-    },
-    FilteredUser (state) {
-      if(state.filter.length > 1) {
-        return state.users.filter(user => user.name.toUpperCase().includes(state.filter.toUpperCase()))
-      }
     }
   },
   modules: {

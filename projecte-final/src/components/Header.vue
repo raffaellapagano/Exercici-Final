@@ -13,9 +13,17 @@
               <router-link class="nav-link" to="/pictures">Picture</router-link>
         </div>
 
-        <div class=" col-12 col-lg-4 d-flex align-items-center row">
+        <div id="search">
+          <ejs-autocomplete :dataSource='users' :fields='dataFields'
+          placeholder="Select a game" popupWidth="250px" popupHeigth="400px"
+          style="background:white">
+          </ejs-autocomplete>
+        </div>
+
+        <!-- <div class=" col-12 col-lg-4 d-flex align-items-center row ">
           <form class="form-inline my-2 d-flex justify-content-center flex-nowrap">
-            <input type="text" v-model="state" autocomplete="on" @input="filterStates" class="form-control dropdown" placeholder="Search">
+            <input type="text" v-model="search" autocomplete="on" @input="FilterUsers" @focus="SetModal('true')"
+            class="form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" placeholder="Search">
             <div class="input-group-append">
               <button class="btn btn-secondary" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -23,13 +31,14 @@
                 </svg>
               </button>
             </div>
-          </form>
 
-            <div v-if="filteredStates" class="bg-white" >
+            <div v-if="filteredUsers && modal" class="bg-white" >
               <ul>
-                <li v-for="filteredState in filteredStates" :key="filteredState.id" @click="setState(filteredState)" class="dropdown-item">{{ filteredState }}</li>
+                <li v-for="filteredUser in filteredUsers" :key="filteredUser.id" @click="setState(filterUsers); SetModal('false')" class="dropdown-item">{{ filteredUser }}</li>
               </ul>
             </div>
+          
+          </form> -->
 
           
 
@@ -44,7 +53,7 @@
           </button>
         </form>      -->
         
-        </div>
+       
         
       </nav>
 
@@ -54,33 +63,26 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import Vuex from 'vuex'
+import {AutoCompletePlugin} from '@syncfusion/ej2-vue-dropdowns'
+Vue.use(AutoCompletePlugin);
 
 export default {
-  data: function () {
-    return{
-      state: '', 
-      states: ['Florida', 'Alabama', 'Texas'],
-      filteredStates: [],
+  data: function(){
+    return {
+      dataFields:{value:'name'}
     }
   },
   methods:{
-    filterStates(){
-      this.filteredStates = this.states.filter(state => {
-        return state.toLowerCase().startsWith(this.state.toLowerCase());
-      })
-    },
-    setState(state){
-      this.state = state;
-      this.filteredStates = [];
-    }
+    
   },
   computed:{
-        ...Vuex.mapState(['showClient', 'filter', 'users']),
-        ...Vuex.mapMutations(['SetFilter']),
+        ...Vuex.mapState(['modal', 'users', 'filteredUsers']),
+        ...Vuex.mapMutations(['setState', 'FilterUsers','SetModal']),
         search: {
         get() {
-         return this.$store.state.filter;
+         return this.$store.state.user;
         },
         set(value) {
             this.$store.commit('SetFilter', value)
@@ -90,9 +92,15 @@ export default {
 }
 
 
+
 </script>
 
 <style lang="scss">
+
+@import url(https://cdn.syncfusion.com/ej2/material.css);
+#search{
+  margin: 10% 25%;
+}
 
 #nav{
   padding: 30px;
