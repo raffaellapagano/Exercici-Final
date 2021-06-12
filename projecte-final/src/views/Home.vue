@@ -35,7 +35,7 @@ export default {
         ...Vuex.mapMutations(['SetConsulted'])
     },
     computed:{
-        ...Vuex.mapState(['albums', 'users', 'consultedUsers', 'consultedAlbums', 'filter'])
+        ...Vuex.mapState(['albums', 'users', 'consultedUsers', 'consultedAlbums', 'filter', 'modal'])
     }
 }
 </script>

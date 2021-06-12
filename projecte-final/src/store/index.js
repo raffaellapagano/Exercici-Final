@@ -27,31 +27,42 @@ export default new Vuex.Store({
       state.consulted.users = value;
     },
     SetConsulted (state, userName) {
-      console.log(userName);
+      state.modal= false;
       let verify = false;
       let newUser = {
         name: "",
         view: 0
       };
 
-      if(state.consultedUsers.length == 0){
-        newUser.name = userName;
-        newUser.view = 1;
-        state.consultedUsers.push(newUser);
-        verify = true;
-      }else{
-        for (let user = 0; user < state.consultedUsers.length; user++) {
-          if(userName ===  state.consultedUsers[user].name){
-            state.consultedUsers[user].view = state.consultedUsers[user].view + 1;
-            verify = true;
-            }
-          }
-          if(verify === false){
+      for (let i = 0; i < state.users.length; i++) {
+        if(userName == state.users[i].name){
+          state.modal= true;
+            if(state.consultedUsers.length == 0){
             newUser.name = userName;
             newUser.view = 1;
             state.consultedUsers.push(newUser);
+            verify = true;
+          }else{
+            for (let user = 0; user < state.consultedUsers.length; user++) {
+              if(userName ===  state.consultedUsers[user].name){
+                state.consultedUsers[user].view = state.consultedUsers[user].view + 1;
+                verify = true;
+                }
+              }
+              if(verify === false){
+                newUser.name = userName;
+                newUser.view = 1;
+                state.consultedUsers.push(newUser);
+              }
+            } 
           }
-        }      
+        } 
+
+        if(!state.modal){
+          alert('No users');  
+          state.modal=true;
+        }
+          
     },
     SetConsultedPictures (state, albumName) {
       let verify = false;

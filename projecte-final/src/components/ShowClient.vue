@@ -13,7 +13,7 @@
                 <p><span class="font-weight-bold">Tel:</span> {{ users[id].phone }}</p>
                 <p><span class="font-weight-bold">Webside:</span> {{ users[id].website }}</p>
                 <p><span class="font-weight-bold">Company:</span> {{ users[id].company.name }}</p>
-                <button @click="Anterior()" type="button" class="btn btn-primary">Back to List</button>
+                <button @click="Anterior()" type="button" class="btn btn-primary">Back</button>
             </div>
         </div>
 
