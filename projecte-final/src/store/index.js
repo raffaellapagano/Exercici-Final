@@ -7,9 +7,6 @@ export default new Vuex.Store({
   state: {
     albums: [],
     users: [],
-    search: '',
-    filter: '',
-    user: '',
     modal: false,
     filteredUsers: [],
     consultedUsers: [],
@@ -89,9 +86,6 @@ export default new Vuex.Store({
             state.consultedAlbums.push(newAlbum);
           }
         }      
-    },
-    SetSearch (state, search) {
-      state.search = search;
     },
     FilterUsers(state){
       state.filteredUsers = state.users
