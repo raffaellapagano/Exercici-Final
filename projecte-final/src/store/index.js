@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     albums: [],
     users: [],
+    search: '',
     filter: '',
     user: '',
     modal: false,
@@ -26,6 +27,7 @@ export default new Vuex.Store({
       state.consulted.users = value;
     },
     SetConsulted (state, userName) {
+      console.log(userName);
       let verify = false;
       let newUser = {
         name: "",
@@ -77,8 +79,8 @@ export default new Vuex.Store({
           }
         }      
     },
-    SetFilter (state, user) {
-      state.user = user;
+    SetSearch (state, search) {
+      state.search = search;
     },
     FilterUsers(state){
       state.filteredUsers = state.users
