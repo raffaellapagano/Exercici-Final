@@ -58,8 +58,7 @@ export default new Vuex.Store({
         if(!state.modal){
           alert('No users');  
           state.modal=true;
-        }
-          
+        }          
     },
     SetConsultedPictures (state, albumName) {
       let verify = false;

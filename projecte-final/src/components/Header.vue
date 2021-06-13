@@ -78,17 +78,10 @@ export default {
     StringInput(){
       this.search = this.search.$data.search
     },
-    ...Vuex.mapMutations(['setState', 'FilterUsers','SetModal', 'SetConsulted', 'SetSearch'])  
+    ...Vuex.mapMutations(['FilterUsers', 'SetConsulted')  
   },
   computed:{
         ...Vuex.mapState(['users', 'filteredUsers', 'consultedUsers']),
-        // search: {
-        // get() {
-        //  return this.$store.state.user;
-        // },
-        // set(value) {
-        //     this.$store.commit('SetFilter', value)
-        // }
     }
     }
 
