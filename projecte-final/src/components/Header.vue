@@ -73,6 +73,7 @@ export default {
          
         }
       if(this.verify == false){
+        alert('No users')
         this.$router.push('/');
       }
       }
