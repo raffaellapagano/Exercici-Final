@@ -60,7 +60,8 @@ export default {
     },
     Show(proId){
       for (let index = 0; index < this.users.length; index++) {
-        if(this.search == this.users[index])
+        if(this.search == this.users[index].name){
+           this.verify = true;
             this.$router.push(
                 {
                     name: 'details',
@@ -68,11 +69,12 @@ export default {
                         Pid:proId
                     }
                 }
-            );
-          this.verify = true;
+            )
+         
         }
       if(this.verify == false){
         this.$router.push('/');
+      }
       }
     },
     StringInput(){
