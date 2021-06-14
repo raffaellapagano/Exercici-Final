@@ -78,7 +78,7 @@ export default {
     StringInput(){
       this.search = this.search.$data.search
     },
-    ...Vuex.mapMutations(['FilterUsers', 'SetConsulted')  
+    ...Vuex.mapMutations(['FilterUsers', 'SetConsulted'])  
   },
   computed:{
         ...Vuex.mapState(['users', 'filteredUsers', 'consultedUsers']),

@@ -7,11 +7,11 @@ export default new Vuex.Store({
   state: {
     albums: [],
     users: [],
+    paginas: [],
     modal: false,
     filteredUsers: [],
     consultedUsers: [],
-    consultedAlbums: [],
-    arrayConsulted: []
+    consultedAlbums: []
   },
   mutations: {
     SetUsers (state, users) {
@@ -19,6 +19,11 @@ export default new Vuex.Store({
     },
     SetAlbums (state, albums) {
       state.albums = albums
+    },
+    SetPaginas (state){
+      for (let index = 0; index < state.albums.length; index+10) {
+        state.paginas.push(index+1); 
+      }
     },
     SetUser(state, value){
       state.consulted.users = value;
@@ -86,18 +91,6 @@ export default new Vuex.Store({
           }
         }      
     },
-    FilterUsers(state){
-      state.filteredUsers = state.users
-
-
-      // state.filteredUsers = state.users.filter(user => {
-      //   return user.toLowerCase().startsWith(state.search.toLowerCase());
-      // })
-    },
-    setState(state, user){
-      state.user = user;
-      state.modal = false;
-    },
     SetModal(state, value){
       state.modal = value;
     }
@@ -125,7 +118,7 @@ export default new Vuex.Store({
           .then(response => response.data)
           .then(albums => {
           commit('SetAlbums', albums)
-      })
+          })
     }
   },
   getters: {
